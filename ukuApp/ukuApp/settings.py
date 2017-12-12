@@ -25,7 +25,7 @@ SECRET_KEY = 'r7n7(=b^e#$58y7d5pw$h^guc6tv%c!ms&w-#h&aa@4m0-zh_v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','ukuApp.beets3d.com']
 
 
 # Application definition
