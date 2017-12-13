@@ -1,9 +1,74 @@
 from django.db import models
+import datetime
 
 class Agreement(models.Model):
     title_text = models.CharField(max_length=100)
-    desc_date = models.TextField(max_length=1024)
+    desc_date = models.TextField(max_length=1024,default='This is the default description')
+
+
+class Product(models.Model):
+    title_text = models.CharField(max_length=100)
+    desc_date = models.TextField(max_length=1024,default='This is the default description')
+
+
+class SignupInfo(models.Model):
+    name = models.CharField(max_length=100)
+    phoneNum = models.DecimalField(max_digits=11, decimal_places=0)
+    address = models.TextField(max_length=1024,default='This is the default address')
+    school = models.TextField(max_length=1024,default='This is the default school')
+    idNum = models.DecimalField(max_digits=30, decimal_places=0)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                default=1)
+    remark = models.TextField(max_length=1024,blank=True)
+    fields_CHOICES = (
+        ('Rental', (
+            ('name', 'Name'),
+            ('phoneNum', 'Phone Number'),
+            ('address', 'Address'),
+            ('school', 'School'),
+            ('idNum', 'Student ID'),
+            ('product', 'Ukulele you plan to rent'),
+        )),
+        ('Membership', (
+            ('name', 'Name'),
+            ('phoneNum', 'Phone Number'),
+            ('remark', 'Remark'),
+        )),
+        ('unknown', 'Unknown'),
+    )
+
 
 class Activity(models.Model):
-    agreement = models.ForeignKey(Agreement, models.SET_NULL, blank=True, null=True)
     title_text = models.CharField(max_length=100)
+    desc_date = models.TextField(max_length=1024,default='This is the default description')
+    start_date = models.DateField("Start Date", default=datetime.date.today,
+                                  auto_now=False,
+                                  auto_now_add=False,
+                                  help_text="Please use the following format: <em>YYYY-MM-DD</em>."
+                                  )
+    end_date = models.DateField("Start Date", default=datetime.date.today,
+                                auto_now=False,
+                                auto_now_add=False,
+                                help_text="Please use the following format: <em>YYYY-MM-DD</em>.")
+    status = models.BooleanField(default=True)
+    agreement = models.ForeignKey(Agreement,on_delete=models.CASCADE,
+                                  default=1)
+    fields_to_display = models.CharField(max_length=12,
+                                         choices=SignupInfo.fields_CHOICES,
+                                         default="Membership")
+
+
+class ActivitySignupMapping(models.Model):
+    activity = models.ForeignKey(Activity,on_delete=models.CASCADE,
+                                 default=1)
+    signup = models.ForeignKey(SignupInfo,on_delete=models.CASCADE,
+                               default=1)
+
+
+class ProductActivityMapping(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE,
+                                 default=1)
+    products = models.ForeignKey(Product,on_delete=models.CASCADE,
+                                 default=1)
+
+
