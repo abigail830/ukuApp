@@ -1,14 +1,29 @@
 from django.db import models
 import datetime
 
+
 class Agreement(models.Model):
-    title_text = models.CharField(max_length=100)
-    desc_text = models.TextField('Description',max_length=1024,default='This is the default description')
+    title_text = models.CharField(u'标题',max_length=100)
+    desc_text = models.TextField(u'描述',max_length=1024,default='This is the default description')
+
+    def __str__(self):
+        return '协议: ' + self.title_text + ' / '+self.desc_text
+
+    class Meta:
+        verbose_name = '协议'
+        verbose_name_plural = '协议'
 
 
 class Product(models.Model):
-    title_text = models.CharField(max_length=100)
-    desc_text = models.TextField('Description', max_length=1024,default='This is the default description')
+    title_text = models.CharField(u'标题',max_length=100)
+    desc_text = models.TextField(u'描述', max_length=1024,default='This is the default description')
+
+    def __str__(self):
+        return '产品: ' + self.title_text + ' / '+self.desc_text
+
+    class Meta:
+        verbose_name = '产品'
+        verbose_name_plural = '产品'
 
 
 class SignupInfo(models.Model):
@@ -25,6 +40,9 @@ class SignupInfo(models.Model):
             ('rental', 'name|phoneNum|address|school|idNum|product'),
             ('member', 'name|phoneNum|remark')
     )
+    class Meta:
+        verbose_name = '报名'
+        verbose_name_plural = '报名'
 
 
 class Activity(models.Model):
@@ -48,6 +66,10 @@ class Activity(models.Model):
                                          choices=SignupInfo.fields_CHOICES,
                                          default="Membership")
 
+    class Meta:
+        verbose_name = '活动'
+        verbose_name_plural = '活动'
+
 
 class ActivitySignupMapping(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE,
@@ -56,7 +78,6 @@ class ActivitySignupMapping(models.Model):
     signup = models.ForeignKey(SignupInfo, on_delete=models.CASCADE,
                                related_name='signup',
                                default=1)
-
 
 class ProductActivityMapping(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE,
