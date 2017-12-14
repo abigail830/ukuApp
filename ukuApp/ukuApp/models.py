@@ -22,20 +22,8 @@ class SignupInfo(models.Model):
                                 default=1)
     remark = models.TextField('Remarks', max_length=1024,blank=True)
     fields_CHOICES = (
-        ('Rental', (
-            ('name', 'Name'),
-            ('phoneNum', 'Phone Number'),
-            ('address', 'Address'),
-            ('school', 'School'),
-            ('idNum', 'Student ID'),
-            ('product', 'Ukulele you plan to rent'),
-        )),
-        ('Membership', (
-            ('name', 'Name'),
-            ('phoneNum', 'Phone Number'),
-            ('remark', 'Remark'),
-        )),
-        ('unknown', 'Unknown'),
+            ('rental', 'name|phoneNum|address|school|idNum|product'),
+            ('member', 'name|phoneNum|remark')
     )
 
 
