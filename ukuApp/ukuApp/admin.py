@@ -6,7 +6,7 @@ from .models import SignupInfo
 
 
 class MyAdminSite(admin.AdminSite):
-    site_header = 'ukuApp站点管理 '
+    site_title = 'ukuApp站点管理 '
     site_header = 'ukuApp管理网站'
 
 admin_site = MyAdminSite()
