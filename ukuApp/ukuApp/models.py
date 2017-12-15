@@ -66,19 +66,19 @@ class Activity(models.Model):
 
 
 class SignupInfo(models.Model):
-    name = models.CharField('Name', max_length=100)
-    phoneNum = models.DecimalField('Phone Number', max_digits=11, decimal_places=0)
-    address = models.TextField('Address', max_length=1024,default='This is the default address')
-    school = models.TextField('School Name', max_length=1024,default='This is the default school')
-    idNum = models.DecimalField('ID Number', max_digits=30, decimal_places=0)
+    name = models.CharField(u'姓名', max_length=100)
+    phoneNum = models.DecimalField(u'电话', max_digits=11, decimal_places=0)
+    address = models.TextField(u'地址', max_length=1024,default='This is the default address')
+    school = models.TextField(u'学校', max_length=1024,default='This is the default school')
+    idNum = models.DecimalField(u'学生证号', max_digits=30, decimal_places=0)
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='+',
-                                default=1)
-    remark = models.TextField('Remarks', max_length=1024,blank=True)
+                                default=1, verbose_name='产品')
+    remark = models.TextField(u'备注', max_length=1024,blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = '报名'
-        verbose_name_plural = '报名'
+        verbose_name = '报名名单'
+        verbose_name_plural = '报名名单'
 
 
