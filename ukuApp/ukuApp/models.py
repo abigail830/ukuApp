@@ -78,7 +78,7 @@ class SignupInfo(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '报名: ' + self.activity.title_text + ' / ' + self.name + ' / '+ self.phoneNum
+        return '报名: ' + self.activity.title_text + ' / ' + self.name + ' / '+ str(self.phoneNum)
 
     class Meta:
         verbose_name = '报名名单'
