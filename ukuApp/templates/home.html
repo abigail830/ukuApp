@@ -30,15 +30,15 @@
   <div id="page-container">
     <div class="page" style="">
       <div class="weui_article">
-        <h1 class="highlight">{{ title }}</h1>
-        <p class="indent">{{ desc }}</p>
+        <h1 class="highlight">{{ all_activities.0.title_text }}</h1>
+        <p class="indent">{{ all_activities.0.desc_text }}</p>
       </div>
       <div class="weui_cells_title links">请详细阅读以下服务条款内容</div>
       <div class="weui-cells weui-cells_form weui_cells_access">
         <div class="weui-cell">
           <div class="weui-cell__bd">
             <textarea class="weui-textarea agreement_detail" rows="5" readonly="readonly">
-              {{ agreement.desc_text }}
+              {{ all_activities.0.agreement__desc_text }}
             </textarea>
           </div>
         </div>

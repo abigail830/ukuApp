@@ -4,10 +4,8 @@ from ukuApp.models import Activity
 
 # Create your views here.
 def home(request):
-    first_activty = Activity.objects.first()
+    all_activities = Activity.objects.all().values('title_text','desc_text','agreement__desc_text')
     context = {
-        'title': first_activty.title_text,
-        'desc' : first_activty.desc_text,
-        'agreement': first_activty.agreement,
+        "all_activities": all_activities,
     }
     return render(request, "home.html", context)

@@ -52,7 +52,7 @@ class Activity(models.Model):
                                          choices=fields_CHOICES,
                                          default="Membership")
     agreement = models.ForeignKey(Agreement, on_delete=models.CASCADE,
-                                  related_name='+',
+                                  related_name='agreement',
                                   default=1,
                                   verbose_name='使用协议')
     products = models.ManyToManyField(Product, verbose_name='参与的产品')
@@ -72,7 +72,7 @@ class SignupInfo(models.Model):
     school = models.TextField(u'学校', max_length=1024,default='This is the default school')
     idNum = models.DecimalField(u'学生证号', max_digits=30, decimal_places=0)
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
-                                related_name='+',
+                                related_name='product',
                                 default=1, verbose_name='产品')
     remark = models.TextField(u'备注', max_length=1024,blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
