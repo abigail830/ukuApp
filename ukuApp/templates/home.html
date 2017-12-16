@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <!-- saved from url=(0029)http://zhichongjia.com/uku/#/ -->
-<html lang="zh"><head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <link href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.css" rel="stylesheet">
-  <link href="../static/common/css/page.css" rel="stylesheet">
-
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.css" rel="stylesheet">
+    <link href="../static/common/css/page.css" rel="stylesheet">
     <script type="text/javascript" src="../static/vendor/js/jquery-3.2.1.min.js"></script>
 
-  <title>uKu App</title>
+    <title>uKu App</title>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
           $('#ac_list input').on('change', function() {
             var id = $('input[name=ac_radio]:checked', '#ac_list').attr('id');
@@ -31,59 +32,66 @@
         if(ck.checked){
             ck.removeAttribute('checked')
             console.log('选中')
-            document.getElementById("confirm_btn").classList.remove("disabled");
-        } else {
-            ck.setAttribute('checked','checked')
-            console.log('未选中')
-            document.getElementById("confirm_btn").classList.add("disabled");
+                $('#confirm_btn').removeClass("disabled");
+                $('#confirm_btn').bind("click", confirm);
+            } else {
+                ck.setAttribute('checked','checked')
+                console.log('未选中')
+                $('#confirm_btn').addClass("disabled");
+                $('#confirm_btn').unbind("click");
+            }
         }
-    }
-  </script>
+
+        function confirm(){
+            window.location.href = "/signup?act_id={{ all_activities.0.id }}";
+        }
+    </script>
 
 </head>
 <body>
-  <div id="page-container">
+<div id="page-container">
     <div class="page" style="">
-      <div class="weui-article">
-        <h1 class="highlight">我要参加</h1>
-        <div class="weui-cells weui-cells_radio" id="ac_list">
-            {% for activity in all_activities %}
-            <label class="weui-cell weui-check__label" for="ac{{forloop.counter0}}">
-                <div class="weui-cell__bd">
-                    <p>{{ activity.title_text }}</p>
-                </div>
-                <div class="weui-cell__ft">
-                    <input type="radio" class="weui-check" name="ac_radio" id="ac{{forloop.counter0}}">
-                    <span class="weui-icon-checked"></span>
+        <div class="weui-article">
+            <h1 class="highlight">我要参加</h1>
+            <div class="weui-cells weui-cells_radio" id="ac_list">
+                {% for activity in all_activities %}
+                <label class="weui-cell weui-check__label" for="ac{{forloop.counter0}}">
+                    <div class="weui-cell__bd">
+                        <p>{{ activity.title_text }}</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" class="weui-check" name="ac_radio" id="ac{{forloop.counter0}}">
+                        <span class="weui-icon-checked"></span>
 
-                </div>
-            </label>
-            {% endfor %}
-        </div>
+                    </div>
+                </label>
+                {% endfor %}
+            </div>
 
-          <div class="weui-cells__title links">请详细阅读以下服务条款内容</div>
-          <div class="weui-cells weui-cells_form weui-cell_access">
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <textarea class="weui-textarea middle-block smalltext" id="agreement_detail" rows="4" readonly="readonly">
+            <div class="weui-cells__title links">请详细阅读以下服务条款内容</div>
+            <div class="weui-cells weui-cells_form weui-cell_access">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                <textarea class="weui-textarea middle-block smalltext" id="agreement_detail" rows="4"
+                          readonly="readonly">
                   {{ all_activities.0.agreement__desc_text }}
                 </textarea>
-              </div>
+                    </div>
+                </div>
             </div>
-          </div>
-      </div>
+        </div>
 
-      <div class="weui-cells weui-cells_checkbox">
-        <label class="weui-cell weui-check__label" for="ck">
-          <div class="weui-cell__hd">
-            <input type="checkbox" class="weui-check" id="ck" onchange = "changeState(this)">
-            <i class="weui-icon-checked"></i>
-          </div>
-              <div class="weui-cell__bd weui-cell_primary">我已阅读并接受以上服务条款</div>
-        </label>
-      </div>
-      <a class="bottom-docked disabled" id="confirm_btn">点击确认</a>
+        <div class="weui-cells weui-cells_checkbox">
+            <label class="weui-cell weui-check__label" for="ck">
+                <div class="weui-cell__hd">
+                    <input type="checkbox" class="weui-check" id="ck" onchange="changeState(this)">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd weui-cell_primary">我已阅读并接受以上服务条款</div>
+            </label>
+        </div>
+        <a class="bottom-docked disabled" id="confirm_btn">点击确认</a>
     </div>
-  </div>
+</div>
 </body>
 </html>

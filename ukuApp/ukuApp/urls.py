@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from ukuApp.admin import admin_site
 from ukuApp import views
+
 urlpatterns = [
     url(r'^admin/', admin_site.urls),
-    url(r'^$', views.home,name='index')
+    url(r'^$', views.home, name='index'),
+    url(r'^signup$', views.signup),
+    url(r'^confirmation$', views.confirmation),
+    url(r'^submit$', views.signup_submit)
 ]
