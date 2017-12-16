@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://zhichongjia.com/uku/#/ -->
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.css" rel="stylesheet">
+    <link href="../static/common/css/page.css" rel="stylesheet">
+    <script src="./static/vendor/js/jquery-3.2.1.min.js"></script>
+
+    <title>uku App</title>
+
+    <script>
+        function submit(){
+            document.getElementById("myForm").submit();
+        }
+
+        function validation(){
+            allFieldHasValue = true;
+            $('.weui-input').each(function(){
+                allFieldHasValue = allFieldHasValue && ($(this).val()?true:false);
+            });
+            allFieldHasValue ? $('#confirm_btn').removeClass('disabled') : $('#confirm_btn').addClass('disabled');
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="page-container">
+    <div class="page" style="">
+        <div class="weui_article">
+            <h1 class="highlight">活动报名</h1>
+            <p class="indent">活动内容</p>
+        </div>
+        <div class="weui_cells_title links">请输入报名信息</div>
+        <form id='myForm' action="confirmation" METHOD="POST">
+            {% csrf_token %}
+            <input type="hidden" name="act_id" value="{{ act_id }}">
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="name" type="text" placeholder="请输入姓名" oninput="validation();">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">电话</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="phoneNum" type="tel" placeholder="请输入电话号码"
+                               oninput="validation();">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">学校</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="school" type="text" placeholder="请输入学校" oninput="validation();">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="address" type="text" placeholder="请输入地址"
+                               oninput="validation();">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">学生证号</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="idNum" type="text" placeholder="请输入学生证号"
+                               oninput="validation();">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="remark" type="text" placeholder="请输入备注"
+                               oninput="validation();">
+                    </div>
+                </div>
+            </div>
+
+            <a class="bottom-docked disabled" id="confirm_btn" onclick="submit();">提交资料</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
