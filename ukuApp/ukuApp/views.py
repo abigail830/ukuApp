@@ -8,5 +8,6 @@ def home(request):
     context = {
         'title': first_activty.title_text,
         'desc' : first_activty.desc_text,
+        'agreement': first_activty.agreement,
     }
     return render(request, "home.html", context)

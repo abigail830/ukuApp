@@ -1,344 +1,59 @@
 <!DOCTYPE html>
 <!-- saved from url=(0029)http://zhichongjia.com/uku/#/ -->
-<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
-  
-  <title>UKU品牌“以旧换新”</title>
-  
+<html lang="zh"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <link href="http://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css" rel="stylesheet">
-  <style>
-    body {margin: 0;font: 14px/1.4 "微软雅黑", Helvetica, Tahoma, Arial;color:#666;}
-    .page {position: absolute;top: 0;bottom: 0;left: 0;right: 0;overflow-y: auto;background-color: #fffdfd; }
-    .ng-enter { z-index: 9999;animation:slideInRight 0.3s both ease-in;-webkit-animation:slideInRight 0.3s both ease-in; }
-    .ng-leave { z-index: 8888;animation:fadeOut 0.3s both ease-in;-webkit-animation:fadeOut 0.3s both ease-in; }
-    .reverse .ng-enter {animation-name:slideInLeft;-webkit-animation-name:slideInLeft;}
-    .ng-enter.page, .ng-leave.page { position:absolute;z-index: 0;top: 0;bottom:0;left: 0;right: 0;background: #fff; }
-    @-webkit-keyframes slideInLeft {from { -webkit-transform: translateX(-100%); }to { -webkit-transform: translateX(0); }}
-    @keyframes slideInLeft {from { transform: translateX(-100%); }to { transform: translateX(0); }}
-    @-webkit-keyframes slideInRight {from { -webkit-transform: translateX(100%); }to { -webkit-transform: translateX(0); }}
-    @keyframes slideInRight {from { transform: translateX(100%); }to { transform: translateX(0); }}
-    h1 {text-align:center;line-height: 3;color:#000;}
-    a {font-size: 12px;color: #666;}
-    p.indent {text-indent: 2em;}
-    .weui_article {padding-top: 0;background-color: #fff;}
-    .weui_article .highlight {margin: 16px;border-radius: 10px;background: #db003a;color:#fff;}
-    .weui_article b {color: #000;}
-    .weui_cells_title {color:#333;font-size:16px;background-color: #fff;}
-    .weui_cells_title.links {border-top: 2px solid #db003a;padding-top: 10px;color:#b21743;}
-    .weui_article+.weui_cells_title {margin-top: 0;}
-    .links+.weui_cells:before {display: none;}
-    .weui_cells {margin-top: 8px; font-size:14px;}
-    .weui_cells_checkbox {margin: -1px 0 48px;}
-    .weui_cells_checkbox .weui_cell_primary {color:#000;}
-    .weui_cells_access:after, .weui_cells_checkbox:before{left:15px;}
-    .weui_cells_checkbox .weui_check + .weui_icon_checked::before {font-size:20px;}
-    .weui_cells_checkbox .weui_check:checked + .weui_icon_checked::before {color: #b21743;}
-    .product-list .weui_cell_hd, .shop-list .weui_cell_hd { color: #333; }
-    .product-list .weui_cell_bd { width: 50px; }
-    .product-list .weui_cell_ft, .shop-list .weui_cell_ft { color: #ef4f4f; }
-    .product-detail, .shop-address {font-size: 13px; color:#888;}
-    .bottom-docked {position: fixed;display: block;bottom: 0;left: 0;width: 100%;height: 48px;line-height: 48px;text-align: center;color: #030303;font-size: 16px;background: #db003a;color:#fff;}
-    .bottom-docked.disabled {background: #ccc;}
-    #toast {display: none;position: fixed;z-index: 100;left: 50%;bottom: 160px;border-radius: 8px;padding: 18px 10px;background: rgba(0, 0, 0, .7);font-size: 16px;text-align: center;transform: translateX(-50%);-webkit-transform: translateX(-50%);color: #fff;}
-    #toast.active {animation: fadeInOut 3s;-webkit-animation: fadeInOut 3s;}
-    #toast.visible { display: block; }
-    @keyframes fadeInOut {0% {opacity:0;}30% {opacity:1;}70% {opacity:1;}100% {opacity:0;}}
-    @-webkit-keyframes fadeInOut {0% {opacity:0;}30% {opacity:1;}70% {opacity:1;}100% {opacity:0;}}
-  </style>
-</head>
-<body ng-app="myApp" class="ng-scope">
-  <div id="page-container"><!-- ngView:  --><div ng-view="" class="page ng-scope" style=""><div class="weui_article ng-scope">
-  <h1 class="highlight">{{ title }}</h1>
-  <p class="indent">{{ desc }}</p>
-</div>
-<div class="weui_cells_title links ng-scope">请详细阅读以下链接内容</div>
-<div class="weui_cells weui_cells_access ng-scope">
-  <a class="weui_cell" ng-href="#/products" href="http://zhichongjia.com/uku/#/products">
-    <div class="weui_cell_bd weui_cell_primary">《参与“以旧换新”的产品型号及官方零售价格》</div>
-    <div class="weui_cell_ft"></div>
-  </a>
-  <a class="weui_cell" ng-href="#/contract" href="http://zhichongjia.com/uku/#/contract">
-    <div class="weui_cell_bd weui_cell_primary">《UKU品牌“以旧换新”服务协议》</div>
-    <div class="weui_cell_ft"></div>
-  </a>
-  <a class="weui_cell" ng-click="gotoPlaces()">
-    <div class="weui_cell_bd weui_cell_primary">《UKU品牌以旧换新全国换购点信息》</div>
-    <div class="weui_cell_ft"></div>
-  </a>
-</div>
-<div class="weui_cells weui_cells_checkbox ng-scope">
-  <label class="weui_cell weui_check_label" for="ck">
-    <div class="weui_cell_hd">
-      <input type="checkbox" class="weui_check ng-pristine ng-untouched ng-valid ng-empty" id="ck" ng-model="agreed">
-      <i class="weui_icon_checked"></i>
-    </div>
-    <div class="weui_cell_bd weui_cell_primary">如您选择在线换购请点击确认登记相关信息！</div>
-  </label>
-</div>
-<a class="bottom-docked ng-scope disabled" ng-class="{&#39;disabled&#39;:!agreed}" ng-click="tradeIn($event)">点击确认</a></div></div>
-  <div id="complete" style="display: none;">
-    <div class="weui_mask_transparent"></div>
-    <div class="weui_toast">
-      <i class="weui_icon_toast"></i>
-      <p class="weui_toast_content">已完成</p>
-    </div>
-  </div>
-  <div id="loadingToast" class="weui_loading_toast" style="display: none;">
-    <div class="weui_mask_transparent"></div>
-    <div class="weui_toast">
-      <div class="weui_loading">
-        <div class="weui_loading_leaf weui_loading_leaf_0"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_1"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_2"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_3"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_4"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_5"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_6"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_7"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_8"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_9"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_10"></div>
-        <div class="weui_loading_leaf weui_loading_leaf_11"></div>
-      </div>
-      <p class="weui_toast_content"></p>
-    </div>
-  </div>
-  <div id="toast"></div>
-  <script src="./home_files/angular.min.js.下载"></script>
-  <script src="./home_files/angular-route.min.js.下载"></script>
-  <script src="./home_files/angular-animate.min.js.下载"></script>
+  <link href="../static/common/css/page.css" rel="stylesheet">
+
+  <title>uKu App</title>
+
   <script>
-    (function (handler) {
-      var prefix = ['webkit', 'ms'],
-        humpString = [],
-        htmlStyle = document.documentElement.style,
-        toHumb = function (string) {
-          return string.replace(/-(\w)/g, function ($0, $1) {
-            return $1.toUpperCase();
-          });
-        };
-      for (var i in prefix) humpString.push(toHumb(prefix[i] + '-animation'));
-      humpString.push(toHumb("animation"));
-      for (var j in humpString) {
-        if (humpString.hasOwnProperty(j)) {
-          if (humpString[j] in htmlStyle) {
-            handler(humpString[j]);
-            return;
-          }
-        }
-      }
-    })(function (hump) {
-      document.getElementById("toast").addEventListener(hump + "End", function () {
-        this.classList.remove("active");
-        this.classList.remove("visible");
-      });
-    });
-    var app = angular.module("myApp", ["ngRoute", "ngAnimate"]);
-    app.factory("mySrv", function ($rootScope, $location, $http, $q) {
-      var service = {}, shops;
-      $rootScope.$on("$routeChangeStart", function(evt, next) {
-        if (next.$$route.controller == "aboutCtrl") {
-          document.getElementById("page-container").classList.add("reverse");
+       function changeState (ck) {
+        if(ck.checked){
+            ck.removeAttribute('checked')
+            console.log('选中')
+            document.getElementById("confirm_btn").classList.remove("disabled");
         } else {
-          document.getElementById("page-container").classList.remove("reverse");
+            ck.setAttribute('checked','checked')
+            console.log('未选中')
+            document.getElementById("confirm_btn").classList.add("disabled");
         }
-      });
-      service.products = [
-        { name: "SC-C（经典款）", size: 23, detail: "合板：沙比利（亮亚）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 360 },
-        //{ name: "SC-C（时尚款）", size: 23, detail: "合板：桃花心木（全封闭哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 380 },
-        { name: "喵C（民谣）", size: 23, detail: "合板：桃花心木（哑光）+美国达达里奥+白头银色全封闭旋钮", price: 299 },
-        { name: "喵C（古典）", size: 23, detail: "合板：桃花心木（哑光）+美国达达里奥+白头银色古典琴扭", price: 329 },
-        { name: "UK-200S", size: 21, detail: "合板：桃花心木（哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 328 },
-        { name: "UK-200C", size: 23, detail: "合板：桃花心木（哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 388 },
-        { name: "UK-200T", size: 26, detail: "合板：桃花心木（哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 428 },
-        { name: "E-CL", size: 23, detail: "合板：黑檀木（亮光）+进口AQUILA琴弦+金色全封闭弦扭", price: 860 },
-        //{ name: "UK-300C", size: 23, detail: "合板：台湾虎纹相思木+背侧台湾相思木（哑光）+进口AQUILA琴弦+黑头银色封闭式弦扭", price: 650 },
-        //{ name: "UK-300T", size: 26, detail: "合板：台湾虎纹相思木+背侧台湾相思木（哑光）+进口AQUILA琴弦+黑头银色封闭式弦扭", price: 680 },
-        //{ name: "Mio’s", size: 21, detail: "单板：桃花心木（哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 499 },
-        //{ name: "Mio’c", size: 23, detail: "单板：桃花心木（哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 599 },
-        //{ name: "Mio’T", size: 26, detail: "单板：桃花心木（哑光）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 699 },
-        { name: "YY-800C", size: 23, detail: "单板：桃花心木（亮哑）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 560 },
-        { name: "AD40", size: 23, detail: "单板：英格曼云杉单板+背侧桃花心木（亮哑）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 560 },
-        { name: "AD40L", size: 26, detail: "单板：英格曼云杉单板+背侧桃花心木（亮哑）+进口AQUILA琴弦+黑头银色古典琴扭", price: 600 },
-        { name: "GT.30C", size: 23, detail: "单板：桃花心木（亮哑）+日本进口碳素弦+黑头银色全封闭弦扭", price: 680 },
-        { name: "GT.30L", size: 26, detail: "单板:桃花心木（亮哑）+美国达达里奥+黑头银色古典琴扭", price: 750 },
-        { name: "AC50", size: 23, detail: "单板:相思木（亮哑）+日本进口碳素弦+黑头银色全封闭弦扭", price: 780 },
-        { name: "AC50L", size: 26, detail: "单板:相思木（亮哑）+美国达达里奥+黑头银色古典琴扭", price: 880 },
-        { name: "TS-30A", size: 23, detail: "单板:桃花心木（亮哑）+进口AQUILA琴弦+黑头银色封闭弦扭", price: 580 },
-        //{ name: "TS-30AGT", size: 26, detail: "单板:桃花心木（亮哑）+进口AQUILA琴弦+黑头银色古典弦扭", price: 650 },
-        { name: "DC700", size: 26, detail: "单板:云杉木+背侧枫木（亮光）+进口AQUILA琴弦+金色古典弦扭", price: 999 },
-        { name: "DC800", size: 26, detail: "单板:云杉木+背侧玫瑰木（亮光）+进口AQUILA琴弦+金色古典弦扭", price: 999 },
-        { name: "S-T30", size: 26, detail: "单板:相思木+背侧虎纹相思木（亮哑）+进口AQUILA琴弦+金色古典弦扭", price: 1180 },
-        { name: "AE80", size: 23, detail: "全单:桃花心木（亮哑）+进口AQUILA琴弦+黑头银色全封闭弦扭", price: 1080 },
-        { name: "AE86", size: 26, detail: "全单:桃花心木（亮哑）+进口AQUILA琴弦+黑头银色古典琴扭", price: 1180 }
-      ];
-      service.navigate = function(path) {
-        $location.path(path);
-      }
-      var toast = function (msg) {
-        var elem = document.getElementById("toast");
-        elem.innerHTML = msg;
-        if (elem.classList.contains("active")) {
-          elem.classList.remove("active");
-          setTimeout(function () { elem.classList.add("active"); }, 50);
-        } else {
-          elem.classList.add("visible");
-          elem.classList.add("active");
-        }
-      }
-      var startLoading = function (msg) {
-        var elem = document.getElementById("loadingToast");
-        elem.querySelector(".weui_toast").style.display = typeof msg === "undefined" ? "none" : "";
-        elem.querySelector(".weui_toast_content").innerHTML = msg;
-        elem.style.display = "";
-      }
-      var endLoading = function () {
-        document.getElementById("loadingToast").style.display = "none";
-      }
-      service.toast = toast;
-      service.complete = function () {
-        var elem = document.getElementById("complete");
-        elem.style.display = "";
-        setTimeout(function () {
-          elem.style.display = "none";
-        }, 1000);
-      }
-      service.tradeIn = function (dto) {
-        var deferred = $q.defer();
-        startLoading("提交信息");
-        $http.post("/UKU/Home/SaveInfo", dto).success(function (response) {
-          if (response.Code) {
-            deferred.reject(response.Message);
-          } else {
-            deferred.resolve();
-          }
-        }).error(function () {
-          deferred.reject("提交信息失败");
-        });
-        deferred.promise.finally(endLoading).catch(toast);
-        return deferred.promise;
-      }
-      service.loadShops = function() {
-        var deferred = $q.defer();
-        if (shops) {
-          deferred.resolve(shops);
-        } else {
-          startLoading("开始加载换购点");
-          $http.get("/UKU/Home/MusicShops").success(function (response) {
-            if (response.Code) {
-              deferred.reject(response.Message);
-            } else {
-              shops = response.Data || [];
-              deferred.resolve(shops);
-            }
-          }).error(function () {
-            deferred.reject("加载失败");
-          });
-        }
-        deferred.promise.finally(endLoading).catch(toast);
-        return deferred.promise;
-      }
-      service.shops = function() {
-        return shops;
-      }
-      return service;
-    });
-
-    app.config(function($routeProvider) {
-      $routeProvider.when("/", {
-        templateUrl: "/UKU/Home/About",
-        controller: "aboutCtrl"
-      }).when("/products", {
-        templateUrl: "/UKU/Home/Products",
-        controller: "productsCtrl"
-      }).when("/contract", {
-        templateUrl: "/UKU/Home/Contract",
-        controller: "contractCtrl"
-      }).when("/trade", {
-        templateUrl: "/UKU/Home/TradeIn",
-        controller: "tradeCtrl"
-      }).when("/places", {
-        templateUrl: "/UKU/Home/Places",
-        controller: "placesCtrl"
-    });
-    });
-
-    app.controller("aboutCtrl", function ($scope, $location, mySrv) {
-      $scope.tradeIn = function (ev) {
-        if (ev.target.classList.contains("disabled")) return;
-        mySrv.navigate("/trade");
-      }
-      $scope.gotoPlaces = function () {
-        mySrv.loadShops().then(function(shops) {
-          if (shops.length) {
-            $location.path("/places");
-            return;
-          }
-          mySrv.toast("暂无换购点信息");
-        });
-      }
-    });
-    app.controller("productsCtrl", function ($scope, mySrv) {
-      $scope.products = mySrv.products;
-    });
-    app.controller("placesCtrl", function ($scope, mySrv) {
-      $scope.shops = mySrv.shops();
-    });
-    app.controller("contractCtrl", function () {});
-    app.controller("tradeCtrl", function ($scope, mySrv) {
-      var models = [];
-      for (var i in mySrv.products) {
-        models.push(mySrv.products[i].name);
-      }
-      $scope.models = models;
-      $scope.tradeIn = function() {
-        var name = document.getElementById("name").value.trim();
-        if (!name) {
-          mySrv.toast("姓名不能为空");
-          return;
-        }
-        var mobile = document.getElementById("mobile").value.trim();
-        if (!/^1[1-9]\d{9}$/.test(mobile)) {
-          mySrv.toast("请输入11位手机号码");
-          return;
-        }
-        var address = document.getElementById("address").value.trim();
-        if (!address) {
-          mySrv.toast("收件地址不能为空");
-          return;
-        }
-        var date = document.getElementById("old-date").value.trim();
-        if (!date) {
-          mySrv.toast("购买日期不能为空");
-          return;
-        }
-        var place = document.getElementById("old-place").value.trim();
-        if (!place) {
-          mySrv.toast("购买点不能为空");
-          return;
-        }
-        var oldModel = $scope.oldModel;
-        if (!oldModel) {
-          mySrv.toast("购买型号不能为空");
-          return;
-        }
-        var model = $scope.model;
-        if (!model) {
-          mySrv.toast("换购型号不能为空");
-          return;
-        }
-        if (oldModel == model) {
-          mySrv.toast("换购型号与原购买型号不能相同");
-          return;
-        }
-        mySrv.tradeIn({
-          Name: name, Mobile: mobile, Address: address, Date: date, Place: place, OldModel: oldModel, Model: model
-        }).then(mySrv.complete);
-      }
-    });
+    }
   </script>
 
-</body></html>
+</head>
+<body>
+  <div id="page-container">
+    <div class="page" style="">
+      <div class="weui_article">
+        <h1 class="highlight">{{ title }}</h1>
+        <p class="indent">{{ desc }}</p>
+      </div>
+      <div class="weui_cells_title links">请详细阅读以下服务条款内容</div>
+      <div class="weui-cells weui-cells_form weui_cells_access">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <textarea class="weui-textarea agreement_detail" rows="5" readonly="readonly">
+              {{ agreement.desc_text }}
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="weui_cells weui_cells_checkbox">
+        <label class="weui_cell weui_check_label" for="ck">
+          <div class="weui_cell_hd">
+            <input type="checkbox" class="weui_check" id="ck" onchange = "changeState(this)">
+            <i class="weui_icon_checked"></i>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">我已阅读并接受以上服务条款</div>
+        </label>
+      </div>
+      <a class="bottom-docked disabled" id="confirm_btn">点击确认</a>
+    </div>
+  </div>
+</body>
+</html>
