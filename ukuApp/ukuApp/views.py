@@ -26,13 +26,15 @@ def signup(request):
 def confirmation(request):
     context = {
         "name": request.POST['name'],
-        "sex":request.POST['sex'],
+        "sex": request.POST['sex'],
+        "sex_str": '男孩子' if request.POST['sex'] == 'M' else '女孩子',
         "phoneNum": request.POST['phoneNum'],
         "school": request.POST['school'],
         "address": request.POST['address'],
         "idNum": request.POST['idNum'],
         "act_id": request.POST['act_id'],
-        "remark": request.POST['remark']
+        "remark": request.POST['remark'],
+        "product_id" : request.POST['product']
     }
     return render(request, "confirmation.html", context)
 
@@ -46,7 +48,8 @@ def signup_submit(request):
                    address=request.POST['address'],
                    idNum=request.POST['idNum'],
                    remark=request.POST['remark'],
-                   activity = activity
+                   activity = activity,
+
                    )
     s.save()
     return render(request, "signupSuccess.html")

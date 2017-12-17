@@ -20,12 +20,13 @@
         }
 
 
+
     </script>
 </head>
 <body>
 <div id="page-container">
     <div class="page" style="">
-        <div class="weui_article">
+        <div class="weui-article">
             <h1 class="highlight">确认信息</h1>
         </div>
         <div class="weui_cells_title links">请确认信息无误</div>
@@ -38,6 +39,13 @@
                     <div class="weui-cell__bd">
                         <label class="weui-label">{{ name }}</label>
                         <input type="hidden" name="name" value="{{ name }}">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
+                    <div class="weui-cell__bd">
+                        <label class="weui-label">{{ sex_str }}</label>
+                        <input type="hidden" name="sex" value="{{ sex }}">
                     </div>
                 </div>
                 <div class="weui-cell">

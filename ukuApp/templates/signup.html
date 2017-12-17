@@ -20,6 +20,7 @@
             if(fieldList == "会员"){
                 document.getElementById('product_list').style.display = 'none';
             }
+            validation();
         });
 
         function submit(){
@@ -33,8 +34,6 @@
             });
             allFieldHasValue ? $('#confirm_btn').removeClass('disabled') : $('#confirm_btn').addClass('disabled');
         }
-
-
     </script>
 </head>
 <body>
@@ -48,12 +47,20 @@
         <div class="weui-cells__title links">请输入报名信息</div>
         <form id='myForm' action="confirmation" METHOD="POST">
             {% csrf_token %}
-            <input type="hidden" name="act_id" value="{{ act_id }}">
+            <input type="hidden" name="act_id" value="{{ activity.id }}">
             <div class="weui-cells weui-cells_form" id="fieldListDiv">
-                                <div class="weui-cell">
+                <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input" name="name" type="text" placeholder="请输入姓名" oninput="validation();">
+                        <input class="weui-input" name="name" type="text" required placeholder="请输入姓名"
+                               oninput="validation();">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
+                    <div class="weui-cell__bd">
+                        <input type="radio" name="sex" value="M" checked/> 男孩子<span
+                            style="padding:0 10px;"></span><input type="radio" name="sex" value="F"/> 女孩子<br/>
                     </div>
                 </div>
                 <div class="weui-cell">
@@ -61,42 +68,43 @@
                         <label class="weui-label">电话</label>
                     </div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input" name="phoneNum" type="tel" placeholder="请输入电话号码"
+                        <input class="weui-input" name="phoneNum" type="tel" required placeholder="请输入电话号码"
                                oninput="validation();">
                     </div>
                 </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">学校</label></div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input" name="school" type="text" placeholder="请输入学校" oninput="validation();">
+                        <input class="weui-input" name="school" type="text" required placeholder="请输入学校"
+                               oninput="validation();">
                     </div>
                 </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input" name="address" type="text" placeholder="请输入地址"
+                        <input class="weui-input" name="address" type="text" required placeholder="请输入地址"
                                oninput="validation();">
                     </div>
                 </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">学生证号</label></div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input" name="idNum" type="number" placeholder="请输入学生证号"
+                        <input class="weui-input" name="idNum" type="number" required placeholder="请输入学生证号"
                                oninput="validation();">
                     </div>
                 </div>
                 <div class="weui-cells_radio" id="product_list">
-                {% for product in productList.all %}
-                <label class="weui-cell weui-check__label" for="ac{{forloop.counter}}">
-                    <div class="weui-cell__bd">
-                        <p>备选琴{{forloop.counter}}:     {{ product.title_text }}</p>
-                    </div>
-                    <div class="weui-cell__ft">{{ product.desc_text }}
-                        <input type="radio" class="weui-check" name="ac_radio" id="ac{{forloop.counter}}">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-                {% endfor %}
+                    {% for product in productList.all %}
+                    <label class="weui-cell weui-check__label" for="ac{{forloop.counter}}">
+                        <div class="weui-cell__bd">
+                            <p>备选琴{{forloop.counter}}: {{ product.title_text }}</p>
+                        </div>
+                        <div class="weui-cell__ft">{{ product.desc_text }}
+                            <input type="radio" class="weui-check" name="ac_radio" id="ac{{forloop.counter}}">
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    {% endfor %}
                 </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
@@ -105,8 +113,6 @@
                                oninput="validation();">
                     </div>
                 </div>
-
-
             </div>
 
             <a class="bottom-docked disabled" id="confirm_btn" onclick="submit();">提交资料</a>

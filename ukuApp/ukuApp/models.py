@@ -80,7 +80,7 @@ class SignupInfo(models.Model):
         ('M', '男孩子'),
         ('F', '女孩子')
     )
-    sex = models.CharField(u'显示字段', max_length=3,
+    sex = models.CharField(u'性别', max_length=3,
                            choices=sex_CHOICES,
                            default="M")
 
