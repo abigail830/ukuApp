@@ -34,8 +34,9 @@
 <div id="page-container">
     <div class="page" style="">
         <div class="weui_article">
-            <h1 class="highlight">活动报名</h1>
-            <p class="indent">活动内容</p>
+            <h1 class="highlight">{{activity.title_text}}</h1>
+            <p class="indent">活动报名时间： {{activity.start_date}} 到 {{activity.end_date}}</p>
+            <p class="indent">{{activity.desc_text}}</p>
         </div>
         <div class="weui_cells_title links">请输入报名信息</div>
         <form id='myForm' action="confirmation" METHOD="POST">
