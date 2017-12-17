@@ -16,15 +16,14 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-          $('#ac_list input').on('change', function() {
-            var id = $('input[name=ac_radio]:checked', '#ac_list').attr('id');
-            var agreement_detail = document.getElementById("agreement_detail");
 
-            if(id=="ac0"){
-                agreement_detail.value = "{{all_activities.0.agreement__desc_text}}";
-            }else{
-                agreement_detail.value = "{{all_activities.1.agreement__desc_text}}";
-            }
+          var elements = document.querySelectorAll('[name=ac_radio]:first-child');
+          elements[0].checked =  true;
+
+          $('#ac_list input').on('change', function() {
+            var id = $('input[name=ac_radio]:checked', '#ac_list').attr('id').slice(-1);
+            var desc_id = "desc".concat(id);
+            document.getElementById("agreement_detail").innerHTML = document.getElementById(desc_id).innerHTML;
           });
         });
 
@@ -44,7 +43,7 @@
 
         function confirm(){
             var id_checked = $('input[name=ac_radio]:checked', '#ac_list').attr('id');
-            var act_id = parseInt(id_checked.slice(-1))+1;
+            var act_id = parseInt(id_checked.slice(-1));
             window.location.href = "/signup?act_id="+act_id;
 
         }
@@ -58,14 +57,16 @@
             <h1 class="highlight">我要参加</h1>
             <div class="weui-cells weui-cells_radio" id="ac_list">
                 {% for activity in all_activities %}
-                <label class="weui-cell weui-check__label" for="ac{{forloop.counter0}}">
+                <label class="weui-cell weui-check__label" for="ac{{activity.id}}">
                     <div class="weui-cell__bd">
                         <p>{{ activity.title_text }}</p>
                     </div>
                     <div class="weui-cell__ft">
-                        <input type="radio" class="weui-check" name="ac_radio" id="ac{{forloop.counter0}}">
+                        <input type="radio" class="weui-check" name="ac_radio" id="ac{{activity.id}}">
                         <span class="weui-icon-checked"></span>
-
+                    </div>
+                    <div style="display:none">
+                        <p id="desc{{activity.id}}">{{ activity.agreement__desc_text }}</p>
                     </div>
                 </label>
                 {% endfor %}
