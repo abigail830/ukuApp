@@ -10,7 +10,7 @@
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.css" rel="stylesheet">
     <link href="../static/common/css/page.css" rel="stylesheet">
-    <script src="./static/vendor/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../static/vendor/js/jquery-3.2.1.min.js"></script>
 
     <title>uku App</title>
 
@@ -33,12 +33,12 @@
 <body>
 <div id="page-container">
     <div class="page" style="">
-        <div class="weui_article">
+        <div class="weui-article">
             <h1 class="highlight">{{activity.title_text}}</h1>
-            <p class="indent">活动报名时间： {{activity.start_date}} 到 {{activity.end_date}}</p>
+            <p class="indent">报名时间： {{activity.start_date}} 到 {{activity.end_date}}</p>
             <p class="indent">{{activity.desc_text}}</p>
         </div>
-        <div class="weui_cells_title links">请输入报名信息</div>
+        <div class="weui-cells__title links">请输入报名信息</div>
         <form id='myForm' action="confirmation" METHOD="POST">
             {% csrf_token %}
             <input type="hidden" name="act_id" value="{{ act_id }}">
