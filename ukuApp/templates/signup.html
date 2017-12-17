@@ -15,6 +15,43 @@
     <title>uku App</title>
 
     <script>
+        $(function(){
+            var nameHtml = '<div class="weui-cell"><div class="weui-cell__hd"><label class="weui-label">姓名</label></div><div class="weui-cell__bd"><input class="weui-input" name="name" type="text" placeholder="请输入姓名" oninput="validation();"></div></div>'
+            var phoneHtml = '<div class="weui-cell"><div class="weui-cell__hd"><label class="weui-label">电话</label></div><div class="weui-cell__bd"><input class="weui-input" name="phoneNum" type="tel" placeholder="请输入电话号码" oninput="validation();"></div></div>'
+            var schoolHtml = '<div class="weui-cell"><div class="weui-cell__hd"><label class="weui-label">学校</label></div><div class="weui-cell__bd"><input class="weui-input" name="school" type="text" placeholder="请输入学校" oninput="validation();"></div></div>'
+            var addrHtml = '<div class="weui-cell"><div class="weui-cell__hd"><label class="weui-label">地址</label></div><div class="weui-cell__bd"><input class="weui-input" name="address" type="text" placeholder="请输入地址" oninput="validation();"></div></div>'
+            var idNumHtml = '<div class="weui-cell"><div class="weui-cell__hd"><label class="weui-label">学生证号</label></div><div class="weui-cell__bd"><input class="weui-input" name="idNum" type="number" placeholder="请输入学生证号" oninput="validation();"></div></div>'
+            var remarkHtml = '<div class="weui-cell"><div class="weui-cell__hd"><label class="weui-label">备注</label></div><div class="weui-cell__bd"><input class="weui-input" name="remark" type="text" placeholder="请输入备注" oninput="validation();"></div></div>'
+
+            var productHtml = '<div class="weui-cells_radio" id="product_list">'+
+                '{% for product in productList.all %}'+
+                '<label class="weui-cell weui-check__label" for="ac{{forloop.counter}}">'+
+                    '<div class="weui-cell__bd">'+
+                        '<p>备选琴{{forloop.counter}}:     {{ product.title_text }}</p>'+
+                    '</div>'+
+                    '<div class="weui-cell__ft">{{ product.desc_text }}'+
+                        '<input type="radio" class="weui-check" name="ac_radio" id="ac{{forloop.counter}}">'+
+                        '<span class="weui-icon-checked"></span>'+
+                    '</div>'+
+                '</label>'+
+                '{% endfor %}'+
+                '</div>'
+
+            var fieldListDiv = document.getElementById( 'fieldListDiv' );
+
+            fieldListDiv.insertAdjacentHTML( 'beforeend', nameHtml );
+            fieldListDiv.insertAdjacentHTML( 'beforeend', phoneHtml );
+            fieldListDiv.insertAdjacentHTML( 'beforeend', addrHtml );
+            fieldListDiv.insertAdjacentHTML( 'beforeend', schoolHtml );
+            fieldListDiv.insertAdjacentHTML( 'beforeend', idNumHtml );
+             fieldListDiv.insertAdjacentHTML( 'beforeend', remarkHtml );
+
+            var fieldList = "{{activity.fields_to_display}}";
+            if(fieldList == "租用"){
+                fieldListDiv.insertAdjacentHTML( 'beforeend', productHtml );
+            }
+        });
+
         function submit(){
             document.getElementById("myForm").submit();
         }
@@ -42,49 +79,8 @@
         <form id='myForm' action="confirmation" METHOD="POST">
             {% csrf_token %}
             <input type="hidden" name="act_id" value="{{ act_id }}">
-            <div class="weui-cells weui-cells_form">
-                <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
-                    <div class="weui-cell__bd">
-                        <input class="weui-input" name="name" type="text" placeholder="请输入姓名" oninput="validation();">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd">
-                        <label class="weui-label">电话</label>
-                    </div>
-                    <div class="weui-cell__bd">
-                        <input class="weui-input" name="phoneNum" type="tel" placeholder="请输入电话号码"
-                               oninput="validation();">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">学校</label></div>
-                    <div class="weui-cell__bd">
-                        <input class="weui-input" name="school" type="text" placeholder="请输入学校" oninput="validation();">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
-                    <div class="weui-cell__bd">
-                        <input class="weui-input" name="address" type="text" placeholder="请输入地址"
-                               oninput="validation();">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">学生证号</label></div>
-                    <div class="weui-cell__bd">
-                        <input class="weui-input" name="idNum" type="number" placeholder="请输入学生证号"
-                               oninput="validation();">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
-                    <div class="weui-cell__bd">
-                        <input class="weui-input" name="remark" type="text" placeholder="请输入备注"
-                               oninput="validation();">
-                    </div>
-                </div>
+            <div class="weui-cells weui-cells_form" id="fieldListDiv">
+
             </div>
 
             <a class="bottom-docked disabled" id="confirm_btn" onclick="submit();">提交资料</a>

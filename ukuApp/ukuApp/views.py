@@ -15,7 +15,12 @@ def home(request):
 
 def signup(request):
     activity = Activity.objects.get(pk=request.GET['act_id'])
-    return render(request, "signup.html", {"activity":activity})
+    product_set = activity.products.all()
+    context = {
+        "activity": activity,
+        "productList": product_set,
+    }
+    return render(request, "signup.html", context)
 
 
 def confirmation(request):
