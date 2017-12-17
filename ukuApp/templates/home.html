@@ -43,7 +43,10 @@
         }
 
         function confirm(){
-            window.location.href = "/signup?act_id={{ all_activities.0.id }}";
+            var id_checked = $('input[name=ac_radio]:checked', '#ac_list').attr('id');
+            var act_id = parseInt(id_checked.slice(-1))+1;
+            window.location.href = "/signup?act_id="+act_id;
+
         }
     </script>
 
@@ -90,7 +93,7 @@
                 <div class="weui-cell__bd weui-cell_primary">我已阅读并接受以上服务条款</div>
             </label>
         </div>
-        <a class="bottom-docked disabled" id="confirm_btn">点击确认</a>
+        <a class="bottom-docked disabled" id="confirm_btn" onclick="confirm(this)">点击确认</a>
     </div>
 </div>
 </body>

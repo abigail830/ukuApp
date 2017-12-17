@@ -45,12 +45,12 @@ class Activity(models.Model):
                                 help_text="Please use the following format: <em>YYYY-MM-DD</em>.")
     status = models.BooleanField(u'是否有效', default=True)
     fields_CHOICES = (
-            (u'租用', '姓名|电话|地址|学校|学生证号|产品'),
-            (u'会员', '姓名|电话|备注')
+            (u'租用', '姓名|性别|电话|地址|学校|学号|产品|备注'),
+            (u'会员', '姓名|性别|电话|学校|学号|备注')
     )
     fields_to_display = models.CharField(u'显示字段',max_length=12,
                                          choices=fields_CHOICES,
-                                         default="Membership")
+                                         default="租用")
     agreement = models.ForeignKey(Agreement, on_delete=models.CASCADE,
                                   related_name='agreement',
                                   default=1,
@@ -70,12 +70,19 @@ class SignupInfo(models.Model):
     phoneNum = models.DecimalField(u'电话', max_digits=11, decimal_places=0)
     address = models.TextField(u'地址', max_length=1024,default='This is the default address')
     school = models.TextField(u'学校', max_length=1024,default='This is the default school')
-    idNum = models.DecimalField(u'学生证号', max_digits=30, decimal_places=0)
+    idNum = models.DecimalField(u'学号', max_digits=30, decimal_places=0)
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='product',
-                                default=1, verbose_name='产品')
+                                default=1, verbose_name='租琴型号')
     remark = models.TextField(u'备注', max_length=1024,blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    sex_CHOICES = (
+        ('M', '男孩子'),
+        ('F', '女孩子')
+    )
+    sex = models.CharField(u'显示字段', max_length=3,
+                           choices=sex_CHOICES,
+                           default="M")
 
     def __str__(self):
         return '报名: ' + self.activity.title_text + ' / ' + self.name + ' / '+ str(self.phoneNum)

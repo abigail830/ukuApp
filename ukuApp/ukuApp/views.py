@@ -14,12 +14,14 @@ def home(request):
 
 
 def signup(request):
-    return render(request, "signup.html", {"act_id":request.GET['act_id']})
+    activity = Activity.objects.get(pk=request.GET['act_id'])
+    return render(request, "signup.html", {"activity":activity})
 
 
 def confirmation(request):
     context = {
         "name": request.POST['name'],
+        "sex":request.POST['sex'],
         "phoneNum": request.POST['phoneNum'],
         "school": request.POST['school'],
         "address": request.POST['address'],
@@ -33,6 +35,7 @@ def confirmation(request):
 def signup_submit(request):
     activity = Activity.objects.get(pk=request.POST['act_id'])
     s = SignupInfo(name=request.POST['name'],
+                   sex=request.POST['sex'],
                    phoneNum=request.POST['phoneNum'],
                    school=request.POST['school'],
                    address=request.POST['address'],
