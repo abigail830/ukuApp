@@ -29,7 +29,7 @@
         <div class="weui-article">
             <h1 class="highlight">确认信息</h1>
         </div>
-        <div class="weui_cells_title links">请确认信息无误</div>
+        <div class="weui-cells__title links">请确认信息无误</div>
         <form id='myForm' action="submit" METHOD="POST">
             {% csrf_token %}
             <input type="hidden" name="act_id" value="{{ act_id }}">
