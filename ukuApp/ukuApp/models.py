@@ -73,7 +73,9 @@ class SignupInfo(models.Model):
     idNum = models.TextField(u'学号', max_length=30, default="IDNUM123")
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='product',
-                                blank=True, verbose_name='租琴型号')
+                                blank=True,
+                                null=True,
+                                verbose_name='租琴型号')
     remark = models.TextField(u'备注', max_length=1024,blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     sex_CHOICES = (
