@@ -55,7 +55,7 @@ def signup_submit(request):
     else:
         product = Product.objects.get(pk=request.POST['product_id'])
 
-        s = SignupInfo(name=request.POST['name'],
+    s = SignupInfo(name=request.POST['name'],
                    sex=request.POST['sex'],
                    phoneNum=request.POST['phoneNum'],
                    school=request.POST['school'],
@@ -65,6 +65,6 @@ def signup_submit(request):
                    activity=activity,
                    product=product
                    )
-        s.save()
+    s.save()
 
     return render(request, "signupSuccess.html")

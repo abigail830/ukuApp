@@ -123,7 +123,7 @@
                     <div class="weui-cell__hd"><label class="weui-label">备选琴*</label></div>
                     <div class="weui-cell__bd">
                         {% for product in productList.all %}
-                        <input type="radio" name="product_id" value="{{ product.id }}" required/> {{ product.title_text }} {{ product.desc_text }}<br/>
+                        <input type="radio" name="product_id" id="product_id" value="{{ product.id }}" required/> {{ product.title_text }} {{ product.desc_text }}<br/>
                         {% endfor %}
                     </div>
 

@@ -19,7 +19,11 @@
             document.getElementById("myForm").submit();
         }
 
-
+        $(document).ready(function() {
+            if(document.getElementById("product_id")==null){
+                document.getElementById("product_list").style.display = 'none';
+            }
+        });
 
 
     </script>
@@ -79,7 +83,7 @@
                         <input type="hidden" name="idNum" value="{{ idNum }}">
                     </div>
                 </div>
-                <div class="weui-cell">
+                <div class="weui-cell" id="product_list">
                     <div class="weui-cell__hd"><label class="weui-label">备选琴</label></div>
                     <div class="weui-cell__bd">
                         <label class="weui-label">{{ product_name }}</label>
