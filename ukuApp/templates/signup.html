@@ -52,7 +52,7 @@
     <div class="page" style="">
         <div class="weui-article">
             <h1 class="highlight">{{activity.title_text}}</h1>
-            <p class="indent">报名时间： {{activity.start_date}} 到 {{activity.end_date}}</p>
+            <p>报名时间： {{activity.start_date}} 到 {{activity.end_date}}</p>
             <p class="indent">{{activity.desc_text}}</p>
         </div>
         <div class="weui-cells__title links">请输入报名信息</div>
@@ -107,12 +107,12 @@
                 </div>
                 <div class="weui-cells_radio" id="product_list">
                     {% for product in productList.all %}
-                    <label class="weui-cell weui-check__label" for="ac{{forloop.counter}}">
+                    <label class="weui-cell weui-check__label" for="product_{{forloop.counter}}">
                         <div class="weui-cell__bd">
                             <p>备选琴{{forloop.counter}}: {{ product.title_text }}</p>
                         </div>
                         <div class="weui-cell__ft">{{ product.desc_text }}
-                            <input type="radio" class="weui-check" name="product_id" required id="ac{{forloop.counter}}" value="{{ product.id }}"
+                            <input type="radio" class="weui-check" name="product_id" required id="product_{{forloop.counter}}" value="{{ product.id }}"
                                    onchange="validation();">
                             <span class="weui-icon-checked"></span>
                         </div>
