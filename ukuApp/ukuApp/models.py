@@ -33,7 +33,7 @@ class Product(models.Model):
 class Activity(models.Model):
     title_text = models.CharField(u'活动名称',max_length=100)
     desc_text = models.TextField(u'活动详情',max_length=1024,
-                                 default='This is the default description')
+                                 default='This is the default description', blank=True)
     start_date = models.DateField(u'开始日期', default=datetime.date.today,
                                   auto_now=False,
                                   auto_now_add=False,
@@ -66,14 +66,14 @@ class Activity(models.Model):
 
 
 class SignupInfo(models.Model):
-    name = models.CharField(u'姓名', max_length=100)
+    name = models.CharField(u'姓名', max_length=50)
     phoneNum = models.DecimalField(u'电话', max_digits=11, decimal_places=0)
     address = models.TextField(u'地址', max_length=1024,default='This is the default address')
-    school = models.TextField(u'学校', max_length=1024,default='This is the default school')
-    idNum = models.DecimalField(u'学号', max_digits=30, decimal_places=0)
+    school = models.TextField(u'学校', max_length=100,default='This is the default school')
+    idNum = models.TextField(u'学号', max_length=30, default="IDNUM123")
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='product',
-                                default=1, verbose_name='租琴型号')
+                                blank=True, verbose_name='租琴型号')
     remark = models.TextField(u'备注', max_length=1024,blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     sex_CHOICES = (
