@@ -23,7 +23,14 @@ def signup(request):
 
 
 def confirmation(request):
-    product = Product.objects.get(pk=request.POST['product_id'])
+
+    if(request.POST.__contains__('product_id')):
+        product = Product.objects.get(pk=request.POST.get('product_id'))
+        product_name = product.title_text
+    else:
+        product_name = ''
+
+
     context = {
         "name": request.POST['name'],
         "sex": request.POST['sex'],
@@ -34,15 +41,20 @@ def confirmation(request):
         "idNum": request.POST['idNum'],
         "act_id": request.POST['act_id'],
         "remark": request.POST['remark'],
-        "product_id": request.POST['product_id'],
-        "product_name": product.title_text,
+        "product_id": product.id if request.POST.__contains__('product_id') else '',
+        "product_name": product_name
     }
     return render(request, "confirmation.html", context)
 
 
 def signup_submit(request):
     activity = Activity.objects.get(pk=request.POST['act_id'])
-    product = Product.objects.get(pk=request.POST['product_id'])
+
+    if (request.POST.get('product_id')==''):
+        product = None
+    else:
+        product = Product.objects.get(pk=request.POST['product_id'])
+
     s = SignupInfo(name=request.POST['name'],
                    sex=request.POST['sex'],
                    phoneNum=request.POST['phoneNum'],
@@ -54,4 +66,5 @@ def signup_submit(request):
                    product=product
                    )
     s.save()
+
     return render(request, "signupSuccess.html")

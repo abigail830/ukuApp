@@ -12,13 +12,15 @@
     <link href="../static/common/css/page.css" rel="stylesheet">
     <script type="text/javascript" src="../static/vendor/js/jquery-3.2.1.min.js"></script>
 
-    <title>uKu App</title>
+    <title>吉他街活动报名</title>
 
     <script type="text/javascript">
         $(document).ready(function() {
 
           var elements = document.querySelectorAll('[name=ac_radio]:first-child');
           elements[0].checked =  true;
+          document.getElementById('ck').checked = false;
+          document.getElementById('confirm_btn').disabled = true;
 
           $('#ac_list input').on('change', function() {
             var id = $('input[name=ac_radio]:checked', '#ac_list').attr('id').slice(-1);
@@ -28,23 +30,30 @@
         });
 
        function changeState (ck) {
-        if(ck.checked){
-            ck.removeAttribute('checked')
-            console.log('选中')
+
+            if(ck.checked){
+                ck.removeAttribute('checked')
+                console.log('选中')
                 $('#confirm_btn').removeClass("disabled");
-                $('#confirm_btn').bind("click", confirm);
+                document.getElementById('confirm_btn').disabled = false;
+
             } else {
                 ck.setAttribute('checked','checked')
                 console.log('未选中')
                 $('#confirm_btn').addClass("disabled");
-                $('#confirm_btn').unbind("click");
+                document.getElementById('confirm_btn').disabled = true;
+
             }
         }
 
         function confirm(){
-            var id_checked = $('input[name=ac_radio]:checked', '#ac_list').attr('id');
-            var act_id = parseInt(id_checked.slice(-1));
-            window.location.href = "/signup?act_id="+act_id;
+            if(document.getElementById('confirm_btn').disabled){
+                window.location.href = "";
+            }else{
+                var id_checked = $('input[name=ac_radio]:checked', '#ac_list').attr('id');
+                var act_id = parseInt(id_checked.slice(-1));
+                window.location.href = "/signup?act_id="+act_id;
+            }
 
         }
     </script>
@@ -76,7 +85,7 @@
             <div class="weui-cells weui-cells_form weui-cell_access">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
-                <textarea class="weui-textarea middle-block smalltext" id="agreement_detail" rows="4"
+                <textarea class="weui-textarea middle-block smalltext" id="agreement_detail" rows="10"
                           readonly="readonly">
                   {{ all_activities.0.agreement__desc_text }}
                 </textarea>
