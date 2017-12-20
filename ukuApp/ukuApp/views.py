@@ -5,7 +5,7 @@ from ukuApp.models import Activity, SignupInfo, Product
 
 # Create your views here.
 def home(request):
-    all_activities = Activity.objects.all().values('id', 'title_text', 'desc_text', 'agreement__desc_text')
+    all_activities = Activity.objects.all().values('id', 'title_text', 'desc_text', 'agreement__desc_text').filter(status='True')
     context = {
         "all_activities": all_activities,
     }
